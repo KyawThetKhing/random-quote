@@ -137,11 +137,12 @@ class App extends React.Component {
     let quoteObj = this.state.quoteList.find(value => {
       return value.id === randomIndex;
     });
-    console.log("quoteObj", quoteObj);
-    this.setState({
-      quote: quoteObj.quote,
-      author: quoteObj.author
-    });
+    if (quoteObj) {
+      this.setState({
+        quote: quoteObj.quote,
+        author: quoteObj.author
+      });
+    }
   };
 
   render() {
@@ -149,10 +150,10 @@ class App extends React.Component {
       <div id="quote-box" className="card quote-box">
         <div className="well">
           <div id="text">
-            <h3>{this.state.quote}</h3>
+            <em>{this.state.quote}</em>
           </div>
           <div id="author">
-            <h4>{this.state.author}</h4>
+            <h6 className="text-right">{this.state.author}</h6>
           </div>
         </div>
         <div className="row">
@@ -166,9 +167,11 @@ class App extends React.Component {
             </button>
           </div>
           <div className="col-md-6">
-            <button id="new-quote" className="btn btn-secondary btn-block">
-              Tweet Quote
-            </button>
+            <a id="tweet-quote" href="twitter.com/intent/tweet">
+              <button className="btn btn-secondary btn-block">
+                Tweet Quote
+              </button>
+            </a>
           </div>
         </div>
       </div>
